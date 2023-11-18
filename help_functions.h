@@ -1,0 +1,22 @@
+#pragma once
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <iomanip>
+#include <vector>
+#include <boost/endian.hpp>
+#include "Base64Wrapper.h"
+#include "RSAWrapper.h"
+#include "AESWrapper.h"
+#include "cksum_new.h"
+
+#define ID_SIZE 16
+#define NAME_SIZE 255
+#define VERSION_SIZE 1
+#define PAYLOAD_SIZE 4
+#define VERSION 3
+#define CODE_SIZE 2
+#define REGISTRATION_REQUEST 1025
+
+extern unsigned long _crc;
+extern std::string path;
