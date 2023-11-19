@@ -53,12 +53,19 @@ std::string read_file(std::string path)
 	std::ifstream my_file;
 	std::string line, all_file;
 	my_file.open(path);
-	while (getline(my_file, line)) 
-	{
-		all_file += line;
-		all_file += '\n';
+	if(my_file.good()) {
+		while (getline(my_file, line)) 
+		{
+			all_file += line;
+			all_file += '\n';
+		}
+		my_file.close();
 	}
-	my_file.close();
+	else
+	{
+		std::cout << "file not exists. exit.\n";
+		exit(1);
+	}
 	return all_file;
 }
 
