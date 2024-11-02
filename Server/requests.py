@@ -121,15 +121,17 @@ def invalid_crc_request(conn, code, file_name, client_id):
 
 def last_invalid_crc_request(conn, code, file_name, client_id):
     name = ''
+    byte_id = b''
     for c in client_list:
         if c.cid.hex() == client_id:
             name = c.name
     print(f'{name}, your request to send invalid CRC in the last time (request code: {code}) for: "{file_name}" file accepted. Exit.')
     for f in file_list:
         if f.cid.hex() == client_id and f.file_name == file_name:
+            byte_id = f.cid
             sql_functions.update_lastseen(f.cid, str(datetime.now()))
             sql_functions.delete_file(f.cid, f.file_name)
             path = folder_name + '/' + file_name
             os.remove(path)
-    send_header(conn, GOT_MESSAGE_ANSWER, len(f.cid))
-    write_byte(conn, f.cid, len(f.cid))
+    send_header(conn, GOT_MESSAGE_ANSWER, len(byte_id))
+    write_byte(conn, byte_id, len(byte_id))
