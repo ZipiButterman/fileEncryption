@@ -27,6 +27,7 @@ extern tcp::resolver resolver;
 extern char _name_line[NAME_SIZE];
 extern char _file_name[FILE_NAME_SIZE];
 extern std::string _priv_key;
+extern int _trying_to_send_crc;
 
 std::string HexToBytes(const std::string&);
 std::vector <uint8_t> push_header_to_vector(std::vector <uint8_t>, int, int);
