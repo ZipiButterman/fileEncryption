@@ -59,7 +59,7 @@ void send_encrypted_file_to_server(std::string encrypt, uint8_t* id_address)
 		send_mes.push_back(encrypt[i]);
 	}
 	write_to_server(send_mes, ID_SIZE + VERSION_SIZE + CODE_SIZE + PAYLOAD_SIZE + CONTENT_FILE_SIZE + FILE_NAME_SIZE + encrypt.size()); /*send vector to server*/
-	get_crc(0); /*get crc from server to compare. send 0 to sign that client still didn't try to send crc*/
+	get_crc(_trying_to_send_crc); /*get crc from server to compare. send 0 to sign that client still didn't try to send crc*/
 }
 
 /*this function send success message to server to sign crc are equals*/
